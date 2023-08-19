@@ -1,6 +1,7 @@
 // Variáveis e seleção de elementos
 const apiWeatherKey = '0d456b92b1bbfaf3509d2c655e701a79';
-const apiFlag = 'https://flagsapi.com';
+const apiWeatherIcones = 'https://openweathermap.org/img/wn/';
+const apiFlag = 'https://flagsapi.com/';
 
 const cidadeInput = document.querySelector('#inserir');
 const pesquisarBttn = document.querySelector('.pesquisar');
@@ -24,11 +25,23 @@ pesquisarBttn.addEventListener('click', (e) => {
 
 // Funcoes
 
-const mostrarClimaDados = (cidade) => {
-    console.log(cidade);
+const mostrarClimaDados = async (cidade) => {
+    const dados = await pegarClimaDados(cidade);
+    
+    cidadeElemento.textContent = dados.name;
+    bandeiraElemento.src = `${apiFlag}${dados.sys.country}/flat/32.png`;
+    tempElemento.textContent = dados.main.temp;
+    ceuElemento.textContent = dados.weather[0].description;
+    ceuIcone.src = `${apiWeatherIcones}${dados.weather[0].icon}@2x.png`;
+    umidadeElemento.textContent = dados.main.humidity;
+    ventoElemento.textContent = dados.wind.speed;
 };
 
 const pegarClimaDados = async (cidade) => {
 
-    const apiWeather = fetch();
+    const apiWeatherDados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiWeatherKey}&units=metric&lang=pt_br`);
+
+    const weatherDados = await apiWeatherDados.json();
+
+    return weatherDados;
 };
