@@ -4,8 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clima</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    
+
+    <div id="container">
+
+        <header class="cabecalho">
+            <h1>Confira o clima de uma cidade</h1>
+            <div class="inputBox">
+                <input type="text" id="inserir" placeholder="Digite o nome da cidade">
+                <span class="material-symbols-outlined pesquisar">
+                    search
+                </span>
+            </div>
+        </header>
+
+        <main class="corpo">
+            <div class="localizacao">
+                <span class="material-symbols-outlined">
+                    location_on
+                </span>
+                <p id="nomeDoLocal">Salvador</p>
+                <img src="https://flagsapi.com/BR/flat/32.png" alt="flag" id="bandeiraDoLocal">
+            </div>
+            
+            <div class="temperatura">
+                <div id="grausTemp">
+                    <h1>28&deg;C</h1>
+                </div>
+                <div class="condicaoDoCeu">
+                    <p id="ceu">Nublado</p>
+                    <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="condicao do céu" id="ceuIcone">
+                </div>
+            </div>
+
+            <div class="ar">
+
+                <div class="arUmidade">
+                    <span class="material-symbols-outlined">
+                        water_drop
+                    </span>
+                    <span id="umidade">55%</span>
+                </div>
+                <div class="arVento">
+                    <span class="material-symbols-outlined">
+                        air
+                    </span>
+                    <span id="vento">2.2hm/h</span>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
