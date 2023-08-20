@@ -26,22 +26,28 @@ pesquisarBttn.addEventListener('click', (e) => {
 // Funcoes
 
 const mostrarClimaDados = async (cidade) => {
-    const dados = await pegarClimaDados(cidade);
-    
-    cidadeElemento.textContent = dados.name;
-    bandeiraElemento.src = `${apiFlag}${dados.sys.country}/flat/32.png`;
-    tempElemento.textContent = dados.main.temp;
-    ceuElemento.textContent = dados.weather[0].description;
-    ceuIcone.src = `${apiWeatherIcones}${dados.weather[0].icon}@2x.png`;
-    umidadeElemento.textContent = dados.main.humidity;
-    ventoElemento.textContent = dados.wind.speed;
+    try {
+        const dados = await pegarClimaDados(cidade);
+        
+        cidadeElemento.textContent = dados.name;
+        bandeiraElemento.src = `${apiFlag}${dados.sys.country}/flat/32.png`;
+        tempElemento.textContent = dados.main.temp;
+        ceuElemento.textContent = dados.weather[0].description;
+        ceuIcone.src = `${apiWeatherIcones}${dados.weather[0].icon}@2x.png`;
+        umidadeElemento.textContent = dados.main.humidity;
+        ventoElemento.textContent = dados.wind.speed;
+    } catch (error) {
+        console.log('linha 40, aqui Ocorreu um erro: ' + error);
+    }
 };
 
 const pegarClimaDados = async (cidade) => {
-
-    const apiWeatherDados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiWeatherKey}&units=metric&lang=pt_br`);
-
-    const weatherDados = await apiWeatherDados.json();
-
-    return weatherDados;
+    try {
+        const apiWeatherDados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiWeatherKey}&units=metric&lang=pt_br`);
+    
+        const weatherDados = await apiWeatherDados.json();
+        return weatherDados;
+    } catch(error) {
+        console.log('linha 51, aqui Ocorreu um erro: ' + error);
+    }
 };
