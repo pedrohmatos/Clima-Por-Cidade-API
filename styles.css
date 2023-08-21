@@ -65,11 +65,15 @@ body {
     transition: transform 0.4s;
 }
 
-.corpo {
+.estrutura {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 32px;
+}
+
+.estrutura.oculto {
+    display: none;
 }
 
 .localizacao {
